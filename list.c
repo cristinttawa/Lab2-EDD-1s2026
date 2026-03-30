@@ -35,7 +35,12 @@ Node * createNode(void * data) {
 // Recuerda reservar memoria al puntero usando malloc o calloc.
 
 List * createList() {
-     return NULL;
+    List *list = (List*) malloc(sizeof(List));
+    list->head = NULL;
+    list->tail = NULL;
+    list->current = NULL;
+    
+    return list;
 }
 
 // 2. Programe las funciones void * firstList(List * list) y void * nextList(List * list).
@@ -43,11 +48,22 @@ List * createList() {
 //   - La segunda función retorna el dato del nodo a continuación del current y actualiza el current para que apunte a ese nodo.
 
 void * firstList(List * list) {
-    return NULL;
+    if (list == NULL || list->head == NULL)
+        return NULL;
+
+    list->current = list->head;
+    return list->current->data;
 }
 
 void * nextList(List * list) {
-    return NULL;
+    if (list == NULL || list->current == NULL)
+        return NULL;
+
+    list->current = list->current->next;
+    if (list->current == NULL)
+        return NULL;
+    
+    return list->current->data;
 }
 
 // 3. Programe las funciones void * lastList(List * list) y void * prevList(List * list).
@@ -55,17 +71,38 @@ void * nextList(List * list) {
 //   - La segunda función retorna el dato del nodo anterior a current y actualiza el current para que apunte a ese nodo.
 
 void * lastList(List * list) {
-    return NULL;
+    if (list == NULL || list->tail == NULL)
+        return NULL;
+
+    list->current = list->tail;
+    return list->current->data;
 }
 
 void * prevList(List * list) {
-    return NULL;
+    if (list == NULL || list->current == NULL || list->current->prev == NULL)
+        return NULL;
+
+    list->current = list->current->prev
+    return list->current->data;
 }
 
 // 4. Programe la función void pushFront(List * list, void * data), la cual agrega un dato al comienzo de la lista.
 // Puede utilizar la función Node* createNode(void * data) la cual crea, incializa y retorna un nodo con el dato correspondiente.
 
 void pushFront(List * list, void * data) {
+    Node *newNode = createNode(data);
+
+    if (list->head == NULL)
+    {
+        list->head = newNode;
+        list->current = newNode;
+        list->tail = newNode;
+        return;
+    }
+
+    newNode->next = list->head;
+    list->head->prev = newNode;
+    list->head = newNode;
 }
 
 void pushBack(List * list, void * data) {

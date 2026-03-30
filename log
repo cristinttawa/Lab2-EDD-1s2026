@@ -18,3 +18,20 @@ Fri Mar 27 06:44:54 PM UTC 2026:
  tests:  1|5
 total_score: 10/60
 8b0e915
+Mon Mar 30 02:23:10 AM UTC 2026: 
+ list.c | 39 ++++++++++++++++++++++++++++++++++++++-
+ 1 file changed, 38 insertions(+), 1 deletion(-)
+Compilation failed
+In file included from test.c:5:
+list.c: In function ‘prevList’:
+list.c:85:40: error: expected ‘;’ before ‘return’
+   85 |     list->current = list->current->prev
+      |                                        ^
+      |                                        ;
+   86 |     return list->current->data;
+      |     ~~~~~~                              
+list.c:87:1: error: control reaches end of non-void function [-Werror=return-type]
+   87 | }
+      | ^
+cc1: all warnings being treated as errors
+5cfc0c0
